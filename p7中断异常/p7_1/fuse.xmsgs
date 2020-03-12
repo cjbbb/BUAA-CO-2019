@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="warning" file="HDLCompiler" num="572" delta="unknown" >"D:/p7/p7_1/LEGAL.v" Line 27: Macro &lt;<arg fmt="%s" index="1">rs</arg>&gt; is redefined.
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="572" delta="unknown" >"D:/p7/p7_1/LEGAL.v" Line 28: Macro &lt;<arg fmt="%s" index="1">rt</arg>&gt; is redefined.
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"D:/p7/p7_1/cpu.v" Line 227: Port <arg fmt="%s" index="1">ALUCtrl</arg> is not connected to this instance
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"D:/p7/p7_1/cpu.v" Line 271: Port <arg fmt="%s" index="1">RegDst</arg> is not connected to this instance
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"D:/p7/p7_1/cpu.v" Line 306: Port <arg fmt="%s" index="1">ALUCtrl</arg> is not connected to this instance
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1016" delta="unknown" >"D:/p7/p7_1/cpu.v" Line 394: Port <arg fmt="%s" index="1">ALUCtrl</arg> is not connected to this instance
+</msg>
+
+</messages>
+

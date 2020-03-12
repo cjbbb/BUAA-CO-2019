@@ -1,0 +1,54 @@
+Running: D:\ide\ISE\14.7\ISE_DS\ISE\bin\nt64\unwrapped\fuse.exe --nodebug -i p60 --prj D:\p6\testsuit\\tmp\__mips_tb_beh.prj -o D:\p6\testsuit\\tmp\mips_tb_beh.exe __mips_tb 
+ISim P.20131013 (signature 0x7708f090)
+Number of CPUs detected in this system: 12
+Turning on mult-threading, number of parallel sub-compilation jobs: 24 
+Determining compilation order of HDL files
+Analyzing Verilog file "D:\p6\testsuit\\__mips_tb.v" into library work
+Analyzing Verilog file "D:\p6\testsuit\p60\ALU.v" into library work
+Analyzing Verilog file "D:\p6\testsuit\p60\CMP.v" into library work
+Analyzing Verilog file "D:\p6\testsuit\p60\conflict.v" into library work
+Analyzing Verilog file "D:\p6\testsuit\p60\controller.v" into library work
+Analyzing Verilog file "D:\p6\testsuit\p60\define.v" into library work
+Analyzing Verilog file "D:\p6\testsuit\p60\DM.v" into library work
+Analyzing Verilog file "D:\p6\testsuit\p60\DMEXT.v" into library work
+Analyzing Verilog file "D:\p6\testsuit\p60\D_E_Register.v" into library work
+Analyzing Verilog file "D:\p6\testsuit\p60\EXT.v" into library work
+Analyzing Verilog file "D:\p6\testsuit\p60\E_M_Register.v" into library work
+Analyzing Verilog file "D:\p6\testsuit\p60\F_D_Register.v" into library work
+Analyzing Verilog file "D:\p6\testsuit\p60\GRF.v" into library work
+Analyzing Verilog file "D:\p6\testsuit\p60\IM.v" into library work
+Analyzing Verilog file "D:\p6\testsuit\p60\instr_decoder.v" into library work
+Analyzing Verilog file "D:\p6\testsuit\p60\mips.v" into library work
+Analyzing Verilog file "D:\p6\testsuit\p60\MULT_DIV.v" into library work
+Analyzing Verilog file "D:\p6\testsuit\p60\MUX.v" into library work
+Analyzing Verilog file "D:\p6\testsuit\p60\M_W_Register.v" into library work
+Analyzing Verilog file "D:\p6\testsuit\p60\NPC.v" into library work
+Analyzing Verilog file "D:\p6\testsuit\p60\PC.v" into library work
+Analyzing Verilog file "D:\p6\testsuit\p60\test.v" into library work
+Starting static elaboration
+Completed static elaboration
+Compiling module PC
+Compiling module IM
+Compiling module F_D_Register
+Compiling module controller
+Compiling module NPC
+Compiling module CMP
+Compiling module GRF
+Compiling module EXT
+Compiling module D_E_Register
+Compiling module ALU
+Compiling module MULT_DIV
+Compiling module E_M_Register
+Compiling module DM
+Compiling module DMEXT
+Compiling module M_W_Register
+Compiling module MUX
+Compiling module instr_decoder
+Compiling module conflict
+Compiling module mips
+Compiling module __mips_tb
+Time Resolution for simulation is 1ps.
+Compiled 20 Verilog Units
+Built simulation executable D:\p6\testsuit\\tmp\mips_tb_beh.exe
+Fuse Memory Usage: 32064 KB
+Fuse CPU Usage: 374 ms

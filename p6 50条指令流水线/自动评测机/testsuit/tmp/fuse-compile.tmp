@@ -1,0 +1,5 @@
+WARNING:HDLCompiler:1016 - "D:\p6\testsuit\p60\mips.v" Line 162: Port ALUCtrl is not connected to this instance
+WARNING:HDLCompiler:1016 - "D:\p6\testsuit\p60\mips.v" Line 186: Port RegDst is not connected to this instance
+WARNING:HDLCompiler:1016 - "D:\p6\testsuit\p60\mips.v" Line 209: Port ALUCtrl is not connected to this instance
+WARNING:HDLCompiler:1016 - "D:\p6\testsuit\p60\mips.v" Line 229: Port ALUCtrl is not connected to this instance
+WARNING:Simulator - Unable to copy libPortabilityNOSH.dll to the simulation executable directory: boost::filesystem::copy_file: 系统找不到指定的路径。, "isim\mips_tb_beh.exe.sim\libPortability.dll".

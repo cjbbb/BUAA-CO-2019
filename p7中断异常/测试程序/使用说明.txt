@@ -1,0 +1,4 @@
+请使用ak同学的代码对拍
+
+gen_code.bat说明：
+请在文件夹中放入文件名为Mars的mars，然后将.asm文件，拖入gen_code.bat，会自动生成code.txt和code_handler.txt

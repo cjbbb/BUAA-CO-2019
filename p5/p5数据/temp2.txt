@@ -1,0 +1,239 @@
+package player;
+
+import frame.Start;
+import item.Bomb;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.security.Key;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.ConcurrentHashMap;
+
+import static frame.Start.BOMB_ROUTE;
+import static frame.Start.STONE_ROUTE;
+
+public class player {
+    public static int offset = 1; //初始火焰偏移量为1
+    public static int Bomb_number = 1; //初始炸弹量为1
+    public static int direction;//0,1,2,3,上下左右
+    public static final int Step = 63;
+    private int speed = 4;//人物速度
+    private Image img;
+    private int moveX;
+    private int moveY;
+    int srcx;
+    int srcy;
+    public int width = 46;
+    public int height = 50;//非常重要
+    public ConcurrentHashMap<String, Bomb> BombMap = new ConcurrentHashMap<>();
+    ImageIcon play_img;
+    private BufferedImage imagebuf;
+    int dx = 0;
+    int dy = 0;//movex = movex + dx
+    public int curretZhenshu = 0;//当前帧数
+    public int nextZhenshu;
+    private Start start;
+    public JLabel man;//人物图层
+
+    boolean[] isKeyPress = new boolean[4];
+
+    public player(Start start, int x, int y) throws IOException {
+        this.moveX = x * Step;
+        this.moveY = y * Step;
+        File temp = new File("img/player.png");
+        imagebuf = ImageIO.read(temp);
+        this.start = start;//frame
+        play_img = new ImageIcon("img/player.png");
+        img = play_img.getImage();
+        getCanshu();
+        this.man = new JLabel(play_img);
+        man.setBounds(moveX, moveY, width, height);
+        start.add(man);
+        shuaxin1();
+        //采用 匿名类 new Timee.Schedule(Time task{},0,20)
+        shuaxin2();
+        //刷新方向
+        getCanshu();
+        //  man.setVisible(true);*/
+    }
+
+    public void shuaxin1() {
+        new Timer().schedule(new TimerTask() {
+            public void run() {
+                System.out.println(srcy);
+
+                img = imagebuf.getSubimage(srcx, srcy, width, height);
+                ImageIcon temp1 = new ImageIcon(img);
+                man.setIcon(temp1);//man 为bounds
+                srcx = curretZhenshu * width;
+                //由图片特判，direction 0,1,2,3//上下左右
+                srcy =
+
+                        getSrcy(direction);
+
+                //     srcy = (3-direction) * height;
+                //System.out.println(direction);
+                move();
+                start.repaint();
+                try {
+                    Thread.sleep(20);
+                } catch (
+                        InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, 0, 20);
+
+    }
+
+    public void shuaxin2() {
+        new Timer().schedule(new TimerTask() {
+            public void run() {
+                curretZhenshu = (curretZhenshu + nextZhenshu) % 4;//任务单方向帧数
+
+            }
+        }, 0, 20);
+
+    }
+
+    public void move() {
+        if (dy == -speed && checkRout(direction)) {//上
+            //   if (direction == 0) {
+            moveY += dy;
+        }
+        if (dy == speed && checkRout(direction)) {//下
+            // if (direction == 1) {
+            moveY += dy;
+        }
+        if (dx == -speed && checkRout(direction)) {//左
+            //   if (direction == 2) {
+            moveX += dx;
+        }
+        if (dx == speed && checkRout(direction)) {//右
+            // if (direction == 3) {
+            moveX = moveX + dx;
+        }
+        man.setLocation(moveX, moveY);
+    }
+
+    //与找到的图片适配
+    public int getSrcy(int i) {
+        if (i == 0) return height * 0;
+        if (i == 1) return height * 1;
+        if (i == 2) return height * 2;
+        if (i == 3) return height * 3;
+        return 0;
+    }
+
+    public boolean checkRout(int direction) {
+        int x = man.getX();
+        int y = man.getY();
+        int temp;
+        double tempx, tempy;
+        switch (direction) {
+            case 0://上
+                tempy = (int) Math.floor((y - 1) / (double) Step);//返回》=该数 的最小整数
+                tempx = (int) Math.floor((x - 1) / (double) Step);
+                temp = start.datas[(int) tempy][(int) tempx];
+                if (temp == 4 || temp == 3) {
+                    return true;
+                }
+                break;
+            case 1://下
+                tempy = (int) Math.ceil((y + 1) / (double) Step);//返回》=该数 的最小整数
+                tempx = Math.round(x / (double) Step);
+                temp = start.datas[(int) tempy][(int) tempx];
+                if (temp == 4 || temp == 3) {
+                    return true;
+                }
+                break;
+            case 2://左
+                tempy = Math.round(y / (double) Step);
+                tempx = (int) Math.floor((x - 1) / (double) Step);
+                temp = start.datas[(int) tempy][(int) tempx];
+                if (temp == 4 || temp == 3) {
+                    return true;
+                }
+                break;
+            case 3://右
+                tempy = Math.round(y / (double) Step);
+                tempx = (int) Math.ceil((x + 1) / (double) Step);
+                temp = start.datas[(int) tempy][(int) tempx];
+                if (temp == 4 || temp == 3) {
+                    return true;
+                }
+                break;
+        }
+        return false;
+    }
+
+    private int getDirection() {
+        return direction;
+    }
+
+    public void keypress(int key) {
+        nextZhenshu = 1;
+        int x = man.getX();
+        int y = man.getY();
+        if(key==32){
+            double boom_x = Math.round(x / (double) Step) * Step;
+            double boom_y = Math.round(y / (double) Step) * Step;
+            setBomb((int)boom_x,(int)boom_y);
+        }
+        if (key == KeyEvent.VK_LEFT) {
+            dx = -speed;
+            direction = 2;
+        }
+        if (key == KeyEvent.VK_RIGHT) {
+            dx = +speed;
+            direction = 3;
+        }
+        if (key == KeyEvent.VK_UP) {
+            dy = -speed;
+            direction = 0;
+        }
+        if (key == KeyEvent.VK_DOWN) {
+            dy = +speed;
+            direction = 1;
+        }
+    }
+
+    public void keyReleased(int key) {
+        nextZhenshu = 0;
+        if (key == KeyEvent.VK_LEFT) {//2
+            dx = 0;
+        }
+        if (key == KeyEvent.VK_RIGHT) {//3
+            dx = 0;
+        }
+        if (key == KeyEvent.VK_UP) {//0
+            dy = 0;
+        }
+        if (key == KeyEvent.VK_DOWN) {//1
+            dy = 0;
+        }
+        //
+    }
+
+    public void getCanshu() {
+        width = img.getWidth(null) / 6;
+        height = img.getHeight(null) / 4;
+    }
+
+    //设置炸弹
+    public void setBomb(int map_x, int map_y) {
+        if (BombMap.size() < Bomb_number && start.datas[map_y / Step][map_x / Step] != BOMB_ROUTE) {
+            Bomb b = new Bomb(start, map_x, map_y, offset);
+            BombMap.put(String.valueOf(map_x) + String.valueOf(map_y), b);
+            start.add(b.bomb_obj);
+            Bomb_number--;
+        }
+    }
+
+}

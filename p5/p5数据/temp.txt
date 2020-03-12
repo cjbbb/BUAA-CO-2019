@@ -1,0 +1,94 @@
+package item;
+
+import frame.Start;
+
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+import static frame.Start.*;
+import static player.player.Step;
+
+public class Bomb extends item {
+    public fire fire_jlabel;
+    Lock lock = new ReentrantLock();
+    private Start start;
+    int Bomb_X, Bomb_Y;
+    int Bomb_map_X = Bomb_X / Step;
+    int Bomb_map_Y = Bomb_Y / Step;
+    public JLabel bomb_jlabel = new JLabel(new ImageIcon("img/item/boom.png"));
+    public int isBombed = 0;
+    private int offset;
+    public ArrayList<JLabel> fire_list = new ArrayList<JLabel>();
+    //传递fire的偏移量offset
+    public Bomb(int bomb_x, int bomb_y, Start start, int offset) {//传送位置为地图像素位置
+        super(start);
+        init(bomb_jlabel);
+        this.Bomb_X = bomb_x;
+        this.Bomb_Y = bomb_y;
+        this.start = start;
+        this.offset = offset;
+        start.add(bomb_jlabel, new Integer(Integer.MAX_VALUE));
+        setJLabel(this.bomb_jlabel, bomb_x, bomb_y);
+
+        if (start.datas[Bomb_map_X][Bomb_map_Y] != FIRE_ROUTE) {//此处还没有炸弹
+            count(); //爆炸计时
+        } else {
+            boom_now();
+
+        }
+        start.datas[Bomb_map_X][Bomb_map_Y] = BOMB_ROUTE; // 设置为0不让进入
+    }
+    public void boom_now(){
+        isBombed++;
+        clean_Bomb();
+    }
+    public boolean isFirePlace(){
+        if (start.datas[Bomb_map_Y][Bomb_map_X] == FIRE_ROUTE) {
+            return true;
+        }
+        return false;
+    }
+    public void clean_Bomb() {
+        if (isBombed <= 1) {
+
+            System.out.println("Bombing..." + this);
+            try {
+                lock.lock();
+                System.out.println(Thread.currentThread().getName()  + "bomb_obj:" + bomb_jlabel);
+                bomb_jlabel.setVisible(false);
+                start.remove(bomb_jlabel);
+                try {
+                    String str = Integer.toString(Bomb_X) + Integer.toString(Bomb_Y);
+                    System.out.println("String" + str);
+                    Bomb temp_bomb = start.player.BombMap.get(str);
+                    if (temp_bomb != null && temp_bomb.bomb_jlabel != null) {
+                        start.player.BombMap.remove(str);
+                    }
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    System.out.println("数组越界" + e);
+                } catch (NullPointerException e) {
+                    System.out.println("空指针");
+                }
+                //爆炸放火焰
+                fire_jlabel = new fire(this, fire_list, start,Bomb_X, Bomb_Y, offset);
+            } finally {
+                lock.unlock();
+            }
+        }
+    }
+
+    public void count() {
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                setDanger(Bomb_map_X, Bomb_map_Y);
+
+            }
+        }, 2000); //倒计时爆炸时间
+    }
+}
+

@@ -1,0 +1,4 @@
+ori $t0,11 
+addu $t1,$t2,$t0 
+nop 
+addu $t2,$t1,$t0 
