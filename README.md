@@ -1,4 +1,10 @@
-# BUAA-CO-2019
+# BUAA-Computer Organization-2019
+
+introduction
+
+This is course project for Computer Organization 2019. I designed a five-stage pipeline CPU that supports 50 MIPS instructions using Verilog HDL. The five-stage pipeline CPU can solve abnormal interruption and external abort.
+
+**中文版**
 BUAA 2019年 CO相关代码
 笔者比较弱，最终只到达P7，即mips指令集下50条指令5级流水线+异常中断的cpu 
 当年测的时候p7强测也ak了，但不保证完全无bug
