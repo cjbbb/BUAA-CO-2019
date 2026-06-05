@@ -6,12 +6,12 @@
 
 ## English
 
-This repository contains coursework, source code, documents, and test data for the 2019 BUAA Computer Organization course. The final project is a Verilog implementation of a five-stage pipelined MIPS CPU that supports 50 MIPS instructions, exceptions, interrupts, and memory-mapped timer I/O.
+This repository contains coursework, source code, documents, tools, and test data for the 2019 BUAA Computer Organization course. The final project is a Verilog implementation of a five-stage pipelined MIPS CPU that supports 50 MIPS instructions, exceptions, interrupts, and memory-mapped timer I/O.
 
 The final CPU implementation is in:
 
 ```text
-p7 abnormal interruption and external abort/P7_code/
+projects/p7/code/
 ```
 
 ### Highlights
@@ -22,28 +22,34 @@ p7 abnormal interruption and external abort/P7_code/
 - Multiply/divide unit support.
 - Exception and interrupt handling through CP0.
 - Timer and bridge modules for memory-mapped I/O.
-- Collected test cases, course documents, and design reports from multiple project stages.
+- Collected test cases, course documents, design reports, and archived reference materials.
 
 ### Repository Structure
 
 | Path | Description |
 | --- | --- |
-| `Preparation/` | Early Logisim circuits, MIPS assembly practice, and preparation materials. |
-| `p0/` | Basic Logisim components and introductory circuit exercises. |
-| `p1/` | Verilog practice files. |
-| `p2/` | MIPS assembly exercises. |
-| `p3/` | Single-cycle CPU materials, Logisim circuit, report, and test data. |
-| `p4/` | Verilog CPU design materials and tests. |
-| `p5/` | Initial pipelined CPU implementation and extensive hazard/forwarding test data. |
-| `p6 supports 50 MIPS instructions/` | Pipelined CPU extended to 50 MIPS instructions, with auto-judge scripts and official documents. |
-| `p7 abnormal interruption and external abort/` | Final CPU with exception, interrupt, timer, bridge, and P7 test files. |
-| `Mars.jar` | MARS MIPS simulator used by the course workflow. |
-| `MIPS_Vol2_指令集_.pdf` | MIPS instruction set reference. |
-| `logisim-win-2.7.1.exe` | Logisim installer bundled for the original course environment. |
+| `preparation/` | Early Logisim circuits, MIPS assembly practice, and preparation materials. |
+| `projects/p0/` | Basic Logisim components and introductory circuit exercises. |
+| `projects/p1/` | Verilog practice files. |
+| `projects/p2/` | MIPS assembly exercises. |
+| `projects/p3/` | Single-cycle CPU materials, Logisim circuit, and test data. |
+| `projects/p4/` | Verilog CPU design materials and tests. |
+| `projects/p5/` | Initial pipelined CPU implementation and hazard/forwarding test data. |
+| `projects/p6/` | Pipelined CPU extended to 50 MIPS instructions, with auto-judge scripts. |
+| `projects/p7/` | Final CPU with exception, interrupt, timer, bridge, and P7 test files. |
+| `docs/` | Course references, reports, and stage documents. |
+| `tools/` | Bundled tools such as MARS and Logisim. |
+| `archives/` | Large archives, reference submissions, and generated judge artifacts. |
+
+### Stage Notes
+
+- `projects/p5/README.md`: first pipelined CPU and forwarding/stalling tests.
+- `projects/p6/README.md`: 50-instruction pipeline and auto-judge layout.
+- `projects/p7/README.md`: final exception/interrupt CPU and recommended entry points.
 
 ### Final Project Modules
 
-The final P7 implementation is organized under `p7 abnormal interruption and external abort/P7_code/`.
+The final P7 implementation is organized under `projects/p7/code/`.
 
 Key files include:
 
@@ -64,25 +70,25 @@ The original coursework used the following tools:
 - MARS for MIPS assembly and machine-code generation.
 - Verilog simulator such as ISim/ISE for CPU simulation and judging.
 
-Most test data in this repository follows the course convention: assemble MIPS programs with MARS, load generated code into instruction memory, run the Verilog testbench, and compare simulation output with the expected trace.
+Most test data follows the course convention: assemble MIPS programs with MARS, load generated code into instruction memory, run the Verilog testbench, and compare simulation output with the expected trace.
 
 ### Notes
 
 - The author originally passed the P7 strong tests, but this repository is provided as-is and may still contain bugs.
-- Some folders and filenames are preserved from the original coursework, including Chinese names and spaces.
-- The P5-P7 test data is especially useful for checking forwarding, stalling, branch/jump behavior, exceptions, and interrupts.
+- Some source and test filenames are preserved from the original coursework, including Chinese names.
+- P5-P7 test data is especially useful for checking forwarding, stalling, branch/jump behavior, exceptions, and interrupts.
 - This repository is for learning and reference. Do not submit it directly as your own coursework.
 
 ---
 
 ## 中文
 
-本仓库整理了北京航空航天大学 2019 年《计算机组成原理》课程相关代码、文档和测试数据。最终成果是一个使用 Verilog HDL 实现的五级流水线 MIPS CPU，支持 50 条 MIPS 指令、异常、中断以及基于计时器的内存映射 I/O。
+本仓库整理了北京航空航天大学 2019 年《计算机组成原理》课程相关代码、文档、工具和测试数据。最终成果是一个使用 Verilog HDL 实现的五级流水线 MIPS CPU，支持 50 条 MIPS 指令、异常、中断以及基于计时器的内存映射 I/O。
 
 最终版 CPU 代码位于：
 
 ```text
-p7 abnormal interruption and external abort/P7_code/
+projects/p7/code/
 ```
 
 ### 项目特点
@@ -93,28 +99,34 @@ p7 abnormal interruption and external abort/P7_code/
 - 支持乘除法模块。
 - 通过 CP0 支持异常与中断。
 - 使用 Bridge 和 Timer 实现内存映射 I/O。
-- 保留了多个阶段的测试数据、课程资料和设计文档。
+- 保留多个阶段的测试数据、课程资料、设计文档和归档材料。
 
 ### 目录结构
 
 | 路径 | 说明 |
 | --- | --- |
-| `Preparation/` | 前期准备材料，包括 Logisim 电路、MIPS 汇编练习等。 |
-| `p0/` | 基础 Logisim 部件和入门电路练习。 |
-| `p1/` | Verilog 基础练习。 |
-| `p2/` | MIPS 汇编练习。 |
-| `p3/` | 单周期 CPU 相关材料、Logisim 电路、报告和测试数据。 |
-| `p4/` | Verilog CPU 设计材料和测试数据。 |
-| `p5/` | 初版流水线 CPU，以及较多转发、暂停、跳转相关测试数据。 |
-| `p6 supports 50 MIPS instructions/` | 扩展到 50 条 MIPS 指令的流水线 CPU，包含自动评测脚本和官方资料。 |
-| `p7 abnormal interruption and external abort/` | 最终版 CPU，支持异常、中断、计时器和 Bridge，并包含 P7 测试文件。 |
-| `Mars.jar` | 课程流程中使用的 MARS MIPS 模拟器。 |
-| `MIPS_Vol2_指令集_.pdf` | MIPS 指令集参考资料。 |
-| `logisim-win-2.7.1.exe` | 原课程环境中使用的 Logisim 安装包。 |
+| `preparation/` | 前期准备材料，包括 Logisim 电路、MIPS 汇编练习等。 |
+| `projects/p0/` | 基础 Logisim 部件和入门电路练习。 |
+| `projects/p1/` | Verilog 基础练习。 |
+| `projects/p2/` | MIPS 汇编练习。 |
+| `projects/p3/` | 单周期 CPU 相关材料、Logisim 电路和测试数据。 |
+| `projects/p4/` | Verilog CPU 设计材料和测试数据。 |
+| `projects/p5/` | 初版流水线 CPU，以及转发、暂停、跳转相关测试数据。 |
+| `projects/p6/` | 扩展到 50 条 MIPS 指令的流水线 CPU，包含自动评测脚本。 |
+| `projects/p7/` | 最终版 CPU，支持异常、中断、计时器和 Bridge，并包含 P7 测试文件。 |
+| `docs/` | 课程参考资料、设计报告和阶段文档。 |
+| `tools/` | MARS、Logisim 等工具。 |
+| `archives/` | 压缩包、参考代码和评测生成物归档。 |
+
+### 阶段说明
+
+- `projects/p5/README.md`：初版流水线 CPU，以及转发/暂停测试说明。
+- `projects/p6/README.md`：50 指令流水线 CPU 和自动评测目录说明。
+- `projects/p7/README.md`：最终异常/中断 CPU 和推荐入口说明。
 
 ### 最终版模块说明
 
-P7 最终实现位于 `p7 abnormal interruption and external abort/P7_code/`。
+P7 最终实现位于 `projects/p7/code/`。
 
 其中比较关键的文件包括：
 
@@ -140,6 +152,6 @@ P7 最终实现位于 `p7 abnormal interruption and external abort/P7_code/`。
 ### 说明
 
 - 作者当年 P7 强测通过，但本仓库仅按现状提供，不保证完全无 bug。
-- 部分目录名和文件名保留了原课程时期的命名，包括中文和空格。
+- 部分源码和测试文件名保留了原课程时期的命名，包括中文文件名。
 - P5-P7 阶段的数据部分较有参考价值，尤其适合检查转发、暂停、跳转、异常和中断。
 - 本仓库仅供学习和参考，请勿直接作为课程作业提交。
